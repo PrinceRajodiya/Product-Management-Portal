@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+
+<body onload="displayData()">
+
+    <div class="container" id="container">
+
+        <div class="search">
+            <input type="text" id="search-box" class="search-box" placeholder="Search here...">
+            <button class="enter-search" id="enter-search" onclick="searchProduct()">Search</button>
+        </div>
+
+        <div class="add-button">
+
+            <button id="add" class="add" onclick="addProduct()">
+                Add Product
+            </button>
+
+        </div>
+
+        <div class="products">
+
+            <table>
+
+                <tr>
+                    <th>SR No</th>
+                    <th id="titleTH" class="titleTH">Title</th>
+                    <th id="brandTH" title="brandTH">Brand</th>
+                    <th id="categoryTH" class="categoryTH">Category</th>
+                    <th id="priceTH" class="priceTH">Price</th>
+                    <th id="discountPercentageTH" class="discountPercentageTH">Discount Percentage</th>
+                    <th id="ratingTH" class="ratingTH">Rating</th>
+                    <th id="stockTH" class="stockTH">Stock</th>
+                    <th>Demo</th>
+                    <th>Action</th>
+                </tr>
+
+                <tbody class="data" id="data">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="pagination" id="pagination">
+
+            <ul class="add-buttons" id="add-buttons">
+                
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="add-product" id="add-product">
+
+        <div class="heading">
+            Collect Data
+        </div>
+
+        <div class="product brand">
+            <label id="brand" class="brand">Brand : </label>
+            <input type="text" id="brand-value" class="brand-value">
+        </div>
+
+        <div class="product title">
+            <label id="title" class="title">Title : </label>
+            <input type="text" id="title-value" class="title-value">
+        </div>
+
+        <div class="product category">
+            <label id="category" class="category">Category : </label>
+
+            <select id="category-value">
+                <option value="Select">Select</option>
+                <option value="smartphones">Smartphones</option>
+                <option value="laptops">Laptops</option>
+                <option value="fragrances">Fragrances</option>
+                <option value="skincare">Skincare</option>
+                <option value="groceries">Groceries</option>
+                <option value="home-decoration">Home-decoration</option>
+                <option value="furniture">Furniture</option>
+                <option value="tops">Tops</option>
+                <option value="womens-dresses">Womes Dresses</option>
+                <option value="womens-shoes">Women's Shoes</option>
+                <option value="womens-watches">Women's Watches</option>
+                <option value="womens-bag">womens-bags</option>
+                <option value="womens-jewellery">Women's Jewellery</option>
+                <option value="mens-shirts">Men's Shirts</option>
+                <option value="mens-shoes">Men's Shoes</option>
+                <option value="mens-watches">Men's Watches</option>
+                <option value="sunglasses">Sunglasses</option>
+                <option value="automotive">Automotive</option>
+                <option value="motorcycle">Motorcycle</option>
+                <option value="lighting">Lighting</option>
+            </select>
+
+        </div>
+
+        <div class="product description">
+            <label id="description" class="description">Description : </label>
+            <input type="text" id="description-value" class="description-value">
+        </div>
+
+        <div class="product price">
+            <label id="price" class="price">Price : </label>
+            <input type="text" id="price-value" class="price-value">
+        </div>
+
+        <div class="product discount-percentage">
+            <label id="discountPercentage" class="discountPercentage">Discount Percentage : </label>
+            <input type="text" id="discountPercentage-value" class="discountPercentage-value">
+        </div>
+
+        <div class="product stock">
+            <label id="stock" class="stock">Stock : </label>
+            <input type="text" id="stock-value" class="stock-value">
+        </div>
+
+        <div class="product rating">
+            <label id="rating" class="rating">Rating : </label>
+            <input type="text" id="rating-value" class="rating-value">
+        </div>
+
+        <div class="product thumbnail">
+            <label id="thumbnail" class="thumbnail">Thumbnail : </label>
+            <input type="file" id="thumbnail-value" class="thumbnail-value">
+        </div>
+
+        <div class="product productImage1">
+            <label id="productImage1" class="productImage1">Product Image 1 : </label>
+            <input type="file" id="productImage1-value" class="productImage1-value">
+        </div>
+
+        <div class="product productImage2">
+            <label id="productImage2" class="productImage2">Product Image 2 : </label>
+            <input type="file" id="productImage2-value" class="productImage2-value">
+        </div>
+
+        <div class="product productImage3">
+            <label id="productImage3" class="productImage3">Product Image 3 : </label>
+            <input type="file" id="productImage3-value" class="productImage3-value">
+        </div>
+
+        <div class="product productImage4">
+            <label id="productImage4" class="productImage4">Product Image 4 : </label>
+            <input type="file" id="productImage4-value" class="productImage4-value">
+        </div>
+
+        <div class="product submit">
+
+            <button id="submit-btn" class="submit-btn" onclick="addProduct()">
+                Create
+            </button>
+
+            <button id="submit-btn" class="submit-btn" onclick="updateData(key)">
+                Update
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="toast-message" id="toast-message">
+
+    </div>
+
+    <span class="close" id="close" onclick="closeSmallDemo()">&times;</span>
+
+    <div class="smallDemo" id="smallDemo">
+            
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
